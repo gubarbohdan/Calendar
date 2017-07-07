@@ -31,7 +31,7 @@ public class Calendar {
         for (int i = 0; i < 7; i++) {
             System.out.print(day.getDisplayName(TextStyle.SHORT, Locale.forLanguageTag("uk")) + " ");
             day = day.plus(1);
-            if (i % 7 == 4) {
+            if (day.equals(DayOfWeek.SATURDAY)) {
                 System.out.print(RED);
             }
         }
@@ -41,8 +41,7 @@ public class Calendar {
     private void printDates() {
         for (int i = 0; i < monthLength + startDay; i++) {
             if (i >= startDay) {
-                isWeekend(i);
-                isToday();
+                setColor(i);
                 System.out.format("%2d ", localDate.getDayOfMonth());
                 localDate = localDate.plusDays(1);
             } else {
@@ -57,12 +56,15 @@ public class Calendar {
         }
     }
 
-    private void isWeekend(int i) {
-        if (i % 7 >= 5) {
+    private void setColor(int i) {
+        if (localDate.getDayOfWeek().equals(DayOfWeek.SATURDAY)
+                ) {
             System.out.print(RED);
-        } else if (i % 7 == 0 && i != 0) {
+        } else if (localDate.getDayOfWeek().equals(DayOfWeek.MONDAY)
+                && i != 0) {
             System.out.println(BLACK);
         }
+        isToday();
     }
 
     public void printCalendar() {
