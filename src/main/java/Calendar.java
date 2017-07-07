@@ -57,8 +57,7 @@ public class Calendar {
     }
 
     private void setColor(int i) {
-        if (localDate.getDayOfWeek().equals(DayOfWeek.SATURDAY)
-                ) {
+        if (localDate.getDayOfWeek().equals(DayOfWeek.SATURDAY) || localDate.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
             System.out.print(RED);
         } else if (localDate.getDayOfWeek().equals(DayOfWeek.MONDAY)
                 && i != 0) {
