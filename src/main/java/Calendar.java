@@ -41,7 +41,7 @@ public class Calendar {
     private void printDates() {
         for (int i = 0; i < monthLength + startDay; i++) {
             if (i >= startDay) {
-                setColor(i);
+                setCalendar(i);
                 System.out.format("%2d " + BLACK, localDate.getDayOfMonth());
                 localDate = localDate.plusDays(1);
             } else {
@@ -56,15 +56,20 @@ public class Calendar {
         }
     }
 
-    private void setColor(int i) {
+    private void setCalendar(int i) {
         setWeekendColor(i);
         setTodayColor();
+        newWeek(i);
     }
 
     private void setWeekendColor(int i) {
         if (localDate.getDayOfWeek().equals(DayOfWeek.SATURDAY) || localDate.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
             System.out.print(RED);
-        } else if (localDate.getDayOfWeek().equals(DayOfWeek.MONDAY)
+        }
+    }
+
+    private void newWeek(int i) {
+        if (localDate.getDayOfWeek().equals(DayOfWeek.MONDAY)
                 && i != 0) {
             System.out.println(BLACK);
         }
